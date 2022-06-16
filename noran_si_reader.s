@@ -260,8 +260,11 @@ Image GetSIImage(image raw,image countimg,number ch,number byte_l)
 		for(number ix=0;ix<x;ix++)
 		{
 			end=start+countimg.GetPixel(ix,iy)
-			ImageCalculateHistogram(raw[0,start,1,end],histo,0,0,ch)
-			SIimg.slice1(ix,iy,0,2,ch,1)=histo
+			if(end!=start)
+			{
+				ImageCalculateHistogram(raw[0,start,1,end],histo,0,0,ch)
+				SIimg.slice1(ix,iy,0,2,ch,1)=histo
+			}
 			start=end
 		}
 	}
